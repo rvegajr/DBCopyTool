@@ -2,11 +2,11 @@
 SQL Server Database Copy Tool (originally from Codeplex)
 
 Project Description
-Simple tool to copy databases from one SQL Server to another.
+# Simple tool to copy databases from one SQL Server to another.
 
 Copies a sql server database from one server to another by backing it up, copying the backup file to the destination server and restoring the database.
 
-Please rate and comment! 
+Copied from https://dbcopytool.codeplex.com/.  This project deserves all the props and money!  Give them praise!
 
 ![alt text](http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63006)
 
