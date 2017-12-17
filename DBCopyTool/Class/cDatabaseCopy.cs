@@ -30,8 +30,9 @@ namespace DatabaseCopier.Class
             BACKUP = 1,
             COPY = 2,
             RESTORE = 3,
-            ERROR = 4
-        }
+            ERROR = 4,
+            CLEAR_CONN = 10,
+    }
 
     class cDatabaseCopy
     {
@@ -71,11 +72,9 @@ namespace DatabaseCopier.Class
             //backp the database            
             StepChanged(this, new StepsEventArgs(Steps.BACKUP));
             cDatabaseHelper dbBackup = new cDatabaseHelper(sSourceServer, bSourceServerUseIntegratedSecurity, sSourceServerUsername, sSourceServerPassword, sSourceDatabase);
-                                                      
+
             dbBackup.Progress += new ProgressEventHandler(OperationProgress);
             dbBackup.BackupDatabase(sDatabaseBackupFile);
-
-
             //delete old backup if exists
             StepChanged(this, new StepsEventArgs(Steps.COPY));
             //cHelper.DeleteFileIfExists(sUncDestFile);
@@ -86,8 +85,11 @@ namespace DatabaseCopier.Class
             c.XCopy(sUncSourceFile, sUncDestFile);
 
             //restore the database
-            StepChanged(this, new StepsEventArgs(Steps.RESTORE));
             cDatabaseHelper dbRestore = new cDatabaseHelper(sDestServer, bDestServerUseIntegratedSecurity, sDestServerUsername, sDestServerPassword, "master");
+            StepChanged(this, new StepsEventArgs(Steps.CLEAR_CONN));
+            dbRestore.ClearConnections(sDestDatabase);
+
+            StepChanged(this, new StepsEventArgs(Steps.RESTORE));
             dbRestore.Progress += new ProgressEventHandler(OperationProgress);
             dbRestore.RestoreDatabase(sDestDatabase, sDatabaseRestoreFile, sDestDir, sDestLogDir);
 

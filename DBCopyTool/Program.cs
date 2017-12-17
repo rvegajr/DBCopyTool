@@ -121,7 +121,7 @@ namespace DatabaseCopier
             {
                 //Copy backupfile to dest
                 Console.WriteLine();
-                Console.WriteLine("Copiing file...");
+                Console.WriteLine("Copying file...");
              }
 
             if (e.Step == Steps.RESTORE)
@@ -133,7 +133,7 @@ namespace DatabaseCopier
             if (e.Step == Steps.IDLE)
             {
                 Console.WriteLine();
-                Console.WriteLine("Sucessfully copied database...");            
+                Console.WriteLine("Successfully copied database...");            
             }
         }
 

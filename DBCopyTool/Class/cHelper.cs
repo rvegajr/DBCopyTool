@@ -68,8 +68,17 @@ namespace DatabaseCopier.Class
                 sServername = sServername.Substring(0, sServername.IndexOf(@"\"));
                 IPHostEntry ip = Dns.GetHostEntry(sServername);
                 IPAddress[] IpA = ip.AddressList;
-
-                if (IpA[0].AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+                IPAddress ipItem = null;
+                foreach (var ipAddressItem in IpA)
+                {
+                    //favor IP4 Addresses
+                    if (ipAddressItem.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        ipItem = ipAddressItem;
+                }
+                if (ipItem!=null) {
+                    returnIP = ipItem.ToString();
+                }
+                else if (IpA[0].AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
                 {
                     returnIP = IpA[0].ToString().Replace(":", "-").Replace("%", "s") + ".ipv6-literal.net";
                 }

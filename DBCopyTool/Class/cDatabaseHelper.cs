@@ -307,6 +307,45 @@ namespace DatabaseCopier.Class
             }
         }
 
+        public void ClearConnections(string sDestinationDatabaseName)
+        {
+            //Fire infomessageevent on every message
+            //needed for progress information
+            _con.FireInfoMessageEventOnUserErrors = true;
+
+            //prepare command text
+            string cmdText;
+            cmdText = @"
+ALTER DATABASE[@@DbName@@] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+";
+            cmdText = cmdText.Replace("@@DbName@@", sDestinationDatabaseName);
+
+            SqlCommand cmd = new SqlCommand(cmdText, _con);
+            //no timeout (large database => long backup)
+            cmd.CommandTimeout = 0;
+
+            try
+            {
+                Connect();
+                cmd.ExecuteNonQuery();
+                DisconnectDB();
+
+                //if we had an error (we don't get it in the surrounding try catch because of FireInfoMessageEventOnUserErrors = true)
+                if (_internalError != "")
+                {
+                    //throw this error
+                    throw new Exception(_internalError);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error clearing up the database connections. " + ex.Message);
+            }
+            finally
+            {
+                DisconnectDB();
+            }
+        }
         public void RestoreDatabase(string sDestinationDatabaseName, string sBackupFilename, string sDestinationDataFolder, string sDestinationLogFolder)
         {
             SqlCommand cmd = new SqlCommand();

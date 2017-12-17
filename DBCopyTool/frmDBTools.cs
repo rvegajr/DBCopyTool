@@ -171,7 +171,7 @@ namespace DatabaseCopier
                 case Steps.COPY:
                     {
                         //Copy backupfile to dest
-                        tsStatus.Text = "Copiing file...";
+                        tsStatus.Text = "Copying file...";
                         pbCopy.Value = 0;
                         break;
                     }
@@ -185,7 +185,7 @@ namespace DatabaseCopier
                         {
                             tsStatus.Text = "Idle.";
                             pbCopy.Value = 0;
-                            MessageBox.Show("Sucessfully copied database..", "Wohooo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Successfully copied database..", "Wohooo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                     }
             }

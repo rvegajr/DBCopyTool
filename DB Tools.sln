@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB Copy Tool", "DBCopyTool\DB Copy Tool.csproj", "{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}"
 EndProject
 Global
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6F9E3D-DDDE-4DCB-ABA8-D984706C4A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04F41C91-8DA3-4E1F-B8CE-5CCF5BF29A72}
 	EndGlobalSection
 EndGlobal
