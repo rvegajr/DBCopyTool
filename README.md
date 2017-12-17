@@ -8,8 +8,6 @@ Copies a sql server database from one server to another by backing it up, copyin
 
 Please rate and comment! 
 
-01_copytool.JPG
-http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63006
 ![alt text](http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63006)
 
 You need
@@ -20,12 +18,8 @@ Usage:
 Start the tool :-)
 go to the servers tab and configure your servers (servers are stored in config.xml)
 
-02_settings.JPG
-http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63007
 ![alt text](http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63007)
 
-03_addserver.JPG
-http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63008
 ![alt text](http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63008)
 go to the copy database tab
 copy your database(s)
@@ -35,8 +29,6 @@ copy your database(s)
 Example:
 dbcopytool.exe 192.168.1.1 192.168.1.2 MyDb MyDbCopy
 
-db_copy_tool_cmd.JPG
-http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63297
 ![alt text](http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbcopytool&DownloadId=63297)
 report bugs and ideas :-)
 
