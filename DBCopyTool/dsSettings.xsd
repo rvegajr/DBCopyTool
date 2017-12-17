@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSettings" targetNamespace="http://tempuri.org/dsSettings.xsd" xmlns:mstns="http://tempuri.org/dsSettings.xsd" xmlns="http://tempuri.org/dsSettings.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSettings" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsSettings" msprop:Generator_DataSetName="dsSettings" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtSettings" msprop:Generator_UserTableName="dtSettings" msprop:Generator_RowDeletedName="dtSettingsRowDeleted" msprop:Generator_RowChangedName="dtSettingsRowChanged" msprop:Generator_RowClassName="dtSettingsRow" msprop:Generator_RowChangingName="dtSettingsRowChanging" msprop:Generator_RowEvArgName="dtSettingsRowChangeEvent" msprop:Generator_RowEvHandlerName="dtSettingsRowChangeEventHandler" msprop:Generator_TableClassName="dtSettingsDataTable" msprop:Generator_TableVarName="tabledtSettings" msprop:Generator_RowDeletingName="dtSettingsRowDeleting" msprop:Generator_TablePropName="dtSettings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Servername" msprop:Generator_UserColumnName="Servername" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Servername" msprop:Generator_ColumnPropNameInTable="ServernameColumn" msprop:Generator_ColumnVarNameInTable="columnServername" type="xs:string" />
+              <xs:element name="Username" msprop:Generator_UserColumnName="Username" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Username" msprop:Generator_ColumnPropNameInTable="UsernameColumn" msprop:Generator_ColumnVarNameInTable="columnUsername" type="xs:string" minOccurs="0" />
+              <xs:element name="Password" msprop:Generator_UserColumnName="Password" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_ColumnVarNameInTable="columnPassword" type="xs:string" minOccurs="0" />
+              <xs:element name="UseIntegrated" msprop:Generator_UserColumnName="UseIntegrated" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="UseIntegrated" msprop:Generator_ColumnPropNameInTable="UseIntegratedColumn" msprop:Generator_ColumnVarNameInTable="columnUseIntegrated" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="DefaultDataDir" msprop:Generator_UserColumnName="DefaultDataDir" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DefaultDataDir" msprop:Generator_ColumnPropNameInTable="DefaultDataDirColumn" msprop:Generator_ColumnVarNameInTable="columnDefaultDataDir" type="xs:string" minOccurs="0" />
+              <xs:element name="DefaultBackupDir" msprop:Generator_UserColumnName="DefaultBackupDir" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DefaultBackupDir" msprop:Generator_ColumnPropNameInTable="DefaultBackupDirColumn" msprop:Generator_ColumnVarNameInTable="columnDefaultBackupDir" type="xs:string" minOccurs="0" />
+              <xs:element name="DefaultLogDir" msprop:Generator_UserColumnName="DefaultLogDir" msprop:nullValue="_empty" msprop:Generator_ColumnVarNameInTable="columnDefaultLogDir" msprop:Generator_ColumnPropNameInTable="DefaultLogDirColumn" msprop:Generator_ColumnPropNameInRow="DefaultLogDir" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="dtSettingsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtSettings" />
+      <xs:field xpath="mstns:Servername" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
