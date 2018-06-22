@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+using System.IO;
+using System.Security.Principal;
 
 namespace DatabaseCopier.Class
 {
@@ -74,7 +77,13 @@ namespace DatabaseCopier.Class
 
         public void XCopy(string oldFile, string newFile)
         {
+            if (!UserHasDirectoryAccessRights(oldFile)) throw new Exception(string.Format("Logged in user {0} does not have read access to file '{1}'!", Environment.UserName, oldFile));
+            if (!File.Exists(oldFile)) throw new Exception(string.Format("File '{0}' does not exist", oldFile));
+            var sTargetPath = Path.GetDirectoryName(newFile);
+            if (!Directory.Exists(sTargetPath)) throw new Exception(string.Format("Directory '{0}' does not exist", sTargetPath));
+            if (!UserHasDirectoryAccessRights(sTargetPath)) throw  new Exception(string.Format("Logged in user {0} does not have access to Directory '{1}'!", Environment.UserName, sTargetPath));
             CopyFileEx(oldFile, newFile, new CopyProgressRoutine(this.CopyProgressHandler), IntPtr.Zero, ref pbCancel, CopyFileFlags.COPY_FILE_RESTARTABLE);
+            if (!File.Exists(newFile)) throw new Exception(string.Format("File to be copied to '{0}' does not exist!  Do you have access to {1}?", newFile, oldFile));
         }
 
         private CopyProgressResult CopyProgressHandler(long total, long transferred, long streamSize, long StreamByteTrans, uint dwStreamNumber, CopyProgressCallbackReason reason, IntPtr hSourceFile, IntPtr hDestinationFile, IntPtr lpData)
@@ -86,7 +95,50 @@ namespace DatabaseCopier.Class
             return CopyProgressResult.PROGRESS_CONTINUE;
         }
 
-  
+        private bool UserHasDirectoryAccessRights(string path)
+        {
+            return UserHasDirectoryAccessRights(path, System.Security.AccessControl.FileSystemRights.Read) && UserHasDirectoryAccessRights(path, System.Security.AccessControl.FileSystemRights.Write);
+        }
+
+        private bool UserHasDirectoryAccessRights(string path, FileSystemRights accessRights)
+        {
+            var isInRoleWithAccess = false;
+
+            try
+            {
+                var di = new DirectoryInfo(path);
+                var acl = di.GetAccessControl();
+                var rules = acl.GetAccessRules(true, true, typeof(NTAccount));
+
+                var currentUser = WindowsIdentity.GetCurrent();
+                var principal = new WindowsPrincipal(currentUser);
+                foreach (AuthorizationRule rule in rules)
+                {
+                    var fsAccessRule = rule as FileSystemAccessRule;
+                    if (fsAccessRule == null)
+                        continue;
+
+                    if ((fsAccessRule.FileSystemRights & accessRights) > 0)
+                    {
+                        var ntAccount = rule.IdentityReference as NTAccount;
+                        if (ntAccount == null)
+                            continue;
+
+                        if (principal.IsInRole(ntAccount.Value))
+                        {
+                            if (fsAccessRule.AccessControlType == AccessControlType.Deny)
+                                return false;
+                            isInRoleWithAccess = true;
+                        }
+                    }
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            return isInRoleWithAccess;
+        }
     }
 }
 
